@@ -8,10 +8,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using OurApplication.Data;
+using BangazonAPI.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace OurApplication
+
+namespace BangazonAPI
 {
     public class Startup
     {
@@ -44,10 +45,10 @@ namespace OurApplication
             services.AddMvc();
 
 
-            string path = System.Environment.GetEnvironmentVariable("DB_PATH_ENVIRONMENT_VARIABLE");
+            string path = System.Environment.GetEnvironmentVariable("BANGAZON_DB");
             var connection = $"Filename={path}";
             Console.WriteLine($"connection = {connection}");
-            services.AddDbContext<BangazonContext>(options => options.UseSqlite(connection));
+            services.AddDbContext<BangazonAPIContext>(options => options.UseSqlite(connection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
