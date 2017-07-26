@@ -15,19 +15,27 @@ namespace BangazonAPI.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2");
 
-            modelBuilder.Entity("BangazonAPI.Models.Computer", b =>
+            modelBuilder.Entity("BangazonAPI.Models.Customer", b =>
                 {
-                    b.Property<int>("ComputerId")
+                    b.Property<int>("CustomerId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("DecommisionedDate");
+                    b.Property<bool>("Active");
 
-                    b.Property<string>("PurchasedDate")
+                    b.Property<DateTime>("DateCreated")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasDefaultValueSql("strftime('%Y-%m-%d %H:%M:%S')");
+
+                    b.Property<string>("FirstName")
                         .IsRequired();
 
-                    b.HasKey("ComputerId");
+                    b.Property<string>("LastName")
+                        .IsRequired();
 
-                    b.ToTable("Computer");
+                    b.HasKey("CustomerId");
+
+                    b.ToTable("Customer");
+
                 });
 
             modelBuilder.Entity("BangazonAPI.Models.Employee", b =>
