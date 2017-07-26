@@ -129,9 +129,23 @@ namespace BangazonAPI.Controllers
     }
 
         // DELETE api/values/5
-        // [HttpDelete("{id}")]
-        // public void Delete(int id)
-        // {
-        // }
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            Computer computer = _context.Computer.Single(m => m.ComputerId == id);
+            if (computer == null)
+            {
+                return NotFound();
+            }
+            _context.Computer.Remove(computer);
+            _context.SaveChanges();
+
+            return Ok(computer);
+        }
     }
 }
