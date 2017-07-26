@@ -8,8 +8,8 @@ using BangazonAPI.Data;
 namespace BangazonAPI.Migrations
 {
     [DbContext(typeof(BangazonAPIContext))]
-    [Migration("20170726163855_Dept2")]
-    partial class Dept2
+    [Migration("20170726202921_prod")]
+    partial class prod
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -40,8 +40,6 @@ namespace BangazonAPI.Migrations
                         .ValueGeneratedOnAddOrUpdate()
                         .HasDefaultValueSql("strftime('%Y-%m-%d %H:%M:%S')");
 
-                    b.Property<int?>("DepartmentId1");
-
                     b.Property<string>("FirstName")
                         .IsRequired();
 
@@ -52,16 +50,25 @@ namespace BangazonAPI.Migrations
 
                     b.HasKey("EmployeeId");
 
-                    b.HasIndex("DepartmentId1");
-
                     b.ToTable("Employee");
                 });
 
-            modelBuilder.Entity("BangazonAPI.Models.Employee", b =>
+            modelBuilder.Entity("BangazonAPI.Models.Product", b =>
                 {
-                    b.HasOne("BangazonAPI.Models.Department", "DepartmentId")
-                        .WithMany()
-                        .HasForeignKey("DepartmentId1");
+                    b.Property<int>("ProductId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Description")
+                        .IsRequired();
+
+                    b.Property<int>("Price");
+
+                    b.Property<string>("Title")
+                        .IsRequired();
+
+                    b.HasKey("ProductId");
+
+                    b.ToTable("Product");
                 });
         }
     }
