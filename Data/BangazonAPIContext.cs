@@ -10,6 +10,7 @@ namespace BangazonAPI.Data
         { }
 
         public DbSet<Employee> Employee { get; set; }
+        public DbSet<Computer> Computer { get; set; }
 
         public DbSet<Customer> Customer { get; set; }
 

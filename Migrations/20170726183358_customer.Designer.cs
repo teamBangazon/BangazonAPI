@@ -8,34 +8,27 @@ using BangazonAPI.Data;
 namespace BangazonAPI.Migrations
 {
     [DbContext(typeof(BangazonAPIContext))]
-    partial class BangazonAPIContextModelSnapshot : ModelSnapshot
+    [Migration("20170726183358_customer")]
+    partial class customer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2");
 
-            modelBuilder.Entity("BangazonAPI.Models.Customer", b =>
+            modelBuilder.Entity("BangazonAPI.Models.Computer", b =>
                 {
-                    b.Property<int>("CustomerId")
+                    b.Property<int>("ComputerId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<bool>("Active");
+                    b.Property<string>("DecommisionedDate");
 
-                    b.Property<DateTime>("DateCreated")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasDefaultValueSql("strftime('%Y-%m-%d %H:%M:%S')");
-
-                    b.Property<string>("FirstName")
+                    b.Property<string>("PurchasedDate")
                         .IsRequired();
 
-                    b.Property<string>("LastName")
-                        .IsRequired();
+                    b.HasKey("ComputerId");
 
-                    b.HasKey("CustomerId");
-
-                    b.ToTable("Customer");
-
+                    b.ToTable("Computer");
                 });
 
             modelBuilder.Entity("BangazonAPI.Models.Employee", b =>
