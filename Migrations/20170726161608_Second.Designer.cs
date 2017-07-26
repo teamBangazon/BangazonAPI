@@ -8,9 +8,10 @@ using BangazonAPI.Data;
 namespace BangazonAPI.Migrations
 {
     [DbContext(typeof(BangazonAPIContext))]
-    partial class BangazonAPIContextModelSnapshot : ModelSnapshot
+    [Migration("20170726161608_Second")]
+    partial class Second
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2");
@@ -39,8 +40,6 @@ namespace BangazonAPI.Migrations
                         .ValueGeneratedOnAddOrUpdate()
                         .HasDefaultValueSql("strftime('%Y-%m-%d %H:%M:%S')");
 
-                    b.Property<int?>("DepartmentId1");
-
                     b.Property<string>("FirstName")
                         .IsRequired();
 
@@ -51,16 +50,7 @@ namespace BangazonAPI.Migrations
 
                     b.HasKey("EmployeeId");
 
-                    b.HasIndex("DepartmentId1");
-
                     b.ToTable("Employee");
-                });
-
-            modelBuilder.Entity("BangazonAPI.Models.Employee", b =>
-                {
-                    b.HasOne("BangazonAPI.Models.Department", "DepartmentId")
-                        .WithMany()
-                        .HasForeignKey("DepartmentId1");
                 });
         }
     }
