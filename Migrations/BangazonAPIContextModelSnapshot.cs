@@ -15,29 +15,14 @@ namespace BangazonAPI.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2");
 
-            modelBuilder.Entity("BangazonAPI.Models.Department", b =>
-                {
-                    b.Property<int>("DepartmentId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<double>("ExpenseBudget");
-
-                    b.Property<string>("Name")
-                        .IsRequired();
-
-                    b.HasKey("DepartmentId");
-
-                    b.ToTable("Department");
-                });
-
             modelBuilder.Entity("BangazonAPI.Models.Employee", b =>
                 {
                     b.Property<int>("EmployeeId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("DateHired");
-
-                    b.Property<int>("DepartmentId");
+                    b.Property<DateTime>("DateHired")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasDefaultValueSql("strftime('%Y-%m-%d %H:%M:%S')");
 
                     b.Property<string>("FirstName")
                         .IsRequired();
@@ -49,17 +34,7 @@ namespace BangazonAPI.Migrations
 
                     b.HasKey("EmployeeId");
 
-                    b.HasIndex("DepartmentId");
-
                     b.ToTable("Employee");
-                });
-
-            modelBuilder.Entity("BangazonAPI.Models.Employee", b =>
-                {
-                    b.HasOne("BangazonAPI.Models.Department", "Department")
-                        .WithMany()
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
         }
     }
