@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,25 +8,25 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-// * Class: Employee Controller
-// * Purpose: Provides methods to handle http requests involving instances of the Employee class.
+// * Class: Product Controller
+// * Purpose: Provides methods to handle http requests involving instances of the Product class.
 // * Author: Team One to What
 // * Properties:
-// *   Get(): Retrieves a list of all Employee’s from DB
-//     Get(int EmployeeId): Retrieves a list of a single Employee specified by Id in the url or the request
-//     Post(): Creates a new instance of the Employee class and add’s it to the Db
-//     EmployeeExists: used by Post and Put methods to see if a specific instance of the Employee class exists already
-//     Put(int EmployeeId): Modifies a single Employee instance specified by Id in the url request
+// *   Get(): Retrieves a list of all Product’s from DB
+//     Get(int ProductId): Retrieves a list of a single Product specified by Id in the url or the request
+//     Post(): Creates a new instance of the Product class and add’s it to the Db
+//     ProductExists: used by Post and Put methods to see if a specific instance of the Product class exists already
+//     Put(int ProductId): Modifies a single Product instance specified by Id in the url request
 
 
 namespace BangazonAPI.Controllers
 {
     [Route("api/[controller]")]
-    public class EmployeeController : Controller
+    public class ProductController : Controller
     {
         private BangazonAPIContext _context;
 
-        public EmployeeController(BangazonAPIContext ctx)
+        public ProductController(BangazonAPIContext ctx)
         {
             _context = ctx;
         }
@@ -35,17 +35,17 @@ namespace BangazonAPI.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            IQueryable<object> employees = from employee in _context.Employee select employee;
+            IQueryable<object> products = from product in _context.Product select product;
 
-            if (employees == null)
+            if (products == null)
             {
                 return NotFound();
             }
-            return Ok(employees);
+            return Ok(products);
         }
 
         // GET api/values/5
-        [HttpGet("{id}", Name = "GetEmployee")]
+        [HttpGet("{id}", Name = "GetProduct")]
         
         public IActionResult Get([FromRoute] int id)
         {
@@ -56,13 +56,13 @@ namespace BangazonAPI.Controllers
 
         try
         {
-            Employee employee = _context.Employee.Single(m => m.EmployeeId == id);
+            Product product = _context.Product.Single(m => m.ProductId == id);
 
-            if (employee == null)
+            if (product == null)
             {
                 return NotFound();
             }
-            return Ok(employee);
+            return Ok(product);
         }
         catch (System.InvalidOperationException ex)
         {
@@ -72,14 +72,14 @@ namespace BangazonAPI.Controllers
 
         // POST api/values
         [HttpPost]
-        public IActionResult Post([FromBody] Employee employee)
+        public IActionResult Post([FromBody] Product product)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
         
-        _context.Employee.Add(employee);
+        _context.Product.Add(product);
 
         try
         {
@@ -87,7 +87,7 @@ namespace BangazonAPI.Controllers
         }
         catch (DbUpdateException)
         {
-            if (EmployeeExists(employee.EmployeeId))
+            if (ProductExists(product.ProductId))
             {
                 return new StatusCodeResult(StatusCodes.Status409Conflict);
             }
@@ -96,30 +96,30 @@ namespace BangazonAPI.Controllers
                 throw;
             }
         }
-        return CreatedAtRoute("GetEmployee", new {id = employee.EmployeeId}, employee);
+        return CreatedAtRoute("GetProduct", new {id = product.ProductId}, product);
     }
 
-    private bool EmployeeExists(int employeeId)
+    private bool ProductExists(int ProductId)
     {
-        return _context.Employee.Count(e => e.EmployeeId == employeeId) > 0;
+        return _context.Product.Count(e => e.ProductId == ProductId) > 0;
     }
 
         // PUT api/values/5
         [HttpPut("{id}")]
         
-        public IActionResult Put(int id, [FromBody] Employee employee)
+        public IActionResult Put(int id, [FromBody] Product product)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != employee.EmployeeId)
+            if (id != product.ProductId)
             {
                 return BadRequest();
             }
         
-        _context.Entry(employee).State = EntityState.Modified;
+        _context.Entry(product).State = EntityState.Modified;
 
         try
         {
@@ -127,7 +127,7 @@ namespace BangazonAPI.Controllers
         }
         catch (DbUpdateConcurrencyException)
         {
-            if (!EmployeeExists(id))
+            if (!ProductExists(id))
             {
                 return NotFound();
             }
