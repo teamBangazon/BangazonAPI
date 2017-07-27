@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 /*  
-* Class: Order
+* Class: ProductType
  * Purpose: The ProductType Class holds ProductType information.
  * Author: One-to-What(Willie)
  * Methods:
