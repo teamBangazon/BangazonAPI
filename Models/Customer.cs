@@ -9,19 +9,15 @@ namespace BangazonAPI.Models
     {
         [Key]
         public int CustomerId { get; set; }
-
         [Required]
         public string FirstName {get; set;}
         [Required]
         public string LastName {get; set;}
-
         [Required]
         [DataType(DataType.Date)]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime DateCreated {get; set;}
-        
-        // public DateTime lastInteraction {get; set;}
-
+        public DateTime lastInteraction {get; set;}
         [DefaultValue (false)]
         public bool Active {get; set;}
     }
