@@ -8,6 +8,17 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
+// * Class: Product Controller
+// * Purpose: Provides methods to handle http requests involving instances of the Product class.
+// * Author: Team One to What
+// * Properties:
+// *   Get(): Retrieves a list of all Product’s from DB
+//     Get(int ProductId): Retrieves a list of a single Product specified by Id in the url or the request
+//     Post(): Creates a new instance of the Product class and add’s it to the Db
+//     ProductExists: used by Post and Put methods to see if a specific instance of the Product class exists already
+//     Put(int ProductId): Modifies a single Product instance specified by Id in the url request
+
+
 namespace BangazonAPI.Controllers
 {
     [Route("api/[controller]")]

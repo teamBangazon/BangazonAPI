@@ -15,6 +15,43 @@ namespace BangazonAPI.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2");
 
+            modelBuilder.Entity("BangazonAPI.Models.Computer", b =>
+                {
+                    b.Property<int>("ComputerId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("DecommisionedDate");
+
+                    b.Property<string>("PurchasedDate")
+                        .IsRequired();
+
+                    b.HasKey("ComputerId");
+
+                    b.ToTable("Computer");
+                });
+
+            modelBuilder.Entity("BangazonAPI.Models.Customer", b =>
+                {
+                    b.Property<int>("CustomerId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("Active");
+
+                    b.Property<DateTime>("DateCreated")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasDefaultValueSql("strftime('%Y-%m-%d %H:%M:%S')");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired();
+
+                    b.Property<string>("LastName")
+                        .IsRequired();
+
+                    b.HasKey("CustomerId");
+
+                    b.ToTable("Customer");
+                });
+
             modelBuilder.Entity("BangazonAPI.Models.Department", b =>
                 {
                     b.Property<int>("DepartmentId")
@@ -61,6 +98,8 @@ namespace BangazonAPI.Migrations
                     b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int>("CustomerId");
+
                     b.Property<string>("Description")
                         .IsRequired();
 
@@ -71,6 +110,8 @@ namespace BangazonAPI.Migrations
 
                     b.HasKey("ProductId");
 
+                    b.HasIndex("CustomerId");
+
                     b.ToTable("Product");
                 });
 
@@ -79,6 +120,14 @@ namespace BangazonAPI.Migrations
                     b.HasOne("BangazonAPI.Models.Department", "Department")
                         .WithMany()
                         .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("BangazonAPI.Models.Product", b =>
+                {
+                    b.HasOne("BangazonAPI.Models.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
         }

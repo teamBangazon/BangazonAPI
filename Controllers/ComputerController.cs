@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,25 +8,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-// * Class: Employee Controller
-// * Purpose: Provides methods to handle http requests involving instances of the Employee class.
-// * Author: Team One to What
-// * Properties:
-// *   Get(): Retrieves a list of all Employee’s from DB
-//     Get(int EmployeeId): Retrieves a list of a single Employee specified by Id in the url or the request
-//     Post(): Creates a new instance of the Employee class and add’s it to the Db
-//     EmployeeExists: used by Post and Put methods to see if a specific instance of the Employee class exists already
-//     Put(int EmployeeId): Modifies a single Employee instance specified by Id in the url request
-
-
 namespace BangazonAPI.Controllers
 {
     [Route("api/[controller]")]
-    public class EmployeeController : Controller
+    public class ComputerController : Controller
     {
         private BangazonAPIContext _context;
 
-        public EmployeeController(BangazonAPIContext ctx)
+        public ComputerController(BangazonAPIContext ctx)
         {
             _context = ctx;
         }
@@ -35,17 +24,17 @@ namespace BangazonAPI.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            IQueryable<object> employees = from employee in _context.Employee select employee;
+            IQueryable<object> computers = from computer in _context.Computer select computer;
 
-            if (employees == null)
+            if (computers == null)
             {
                 return NotFound();
             }
-            return Ok(employees);
+            return Ok(computers);
         }
 
         // GET api/values/5
-        [HttpGet("{id}", Name = "GetEmployee")]
+        [HttpGet("{id}", Name = "GetComputer")]
         
         public IActionResult Get([FromRoute] int id)
         {
@@ -56,13 +45,13 @@ namespace BangazonAPI.Controllers
 
         try
         {
-            Employee employee = _context.Employee.Single(m => m.EmployeeId == id);
+            Computer computer = _context.Computer.Single(m => m.ComputerId == id);
 
-            if (employee == null)
+            if (computer == null)
             {
                 return NotFound();
             }
-            return Ok(employee);
+            return Ok(computer);
         }
         catch (System.InvalidOperationException ex)
         {
@@ -72,14 +61,14 @@ namespace BangazonAPI.Controllers
 
         // POST api/values
         [HttpPost]
-        public IActionResult Post([FromBody] Employee employee)
+        public IActionResult Post([FromBody] Computer computer)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
         
-        _context.Employee.Add(employee);
+        _context.Computer.Add(computer);
 
         try
         {
@@ -87,7 +76,7 @@ namespace BangazonAPI.Controllers
         }
         catch (DbUpdateException)
         {
-            if (EmployeeExists(employee.EmployeeId))
+            if (ComputerExists(computer.ComputerId))
             {
                 return new StatusCodeResult(StatusCodes.Status409Conflict);
             }
@@ -96,30 +85,30 @@ namespace BangazonAPI.Controllers
                 throw;
             }
         }
-        return CreatedAtRoute("GetEmployee", new {id = employee.EmployeeId}, employee);
+        return CreatedAtRoute("GetComputer", new {id = computer.ComputerId}, computer);
     }
 
-    private bool EmployeeExists(int employeeId)
+    private bool ComputerExists(int computerId)
     {
-        return _context.Employee.Count(e => e.EmployeeId == employeeId) > 0;
+        return _context.Computer.Count(e => e.ComputerId == computerId) > 0;
     }
 
         // PUT api/values/5
         [HttpPut("{id}")]
         
-        public IActionResult Put(int id, [FromBody] Employee employee)
+        public IActionResult Put(int id, [FromBody] Computer computer)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != employee.EmployeeId)
+            if (id != computer.ComputerId)
             {
                 return BadRequest();
             }
         
-        _context.Entry(employee).State = EntityState.Modified;
+        _context.Entry(computer).State = EntityState.Modified;
 
         try
         {
@@ -127,7 +116,7 @@ namespace BangazonAPI.Controllers
         }
         catch (DbUpdateConcurrencyException)
         {
-            if (!EmployeeExists(id))
+            if (!ComputerExists(id))
             {
                 return NotFound();
             }
@@ -140,9 +129,23 @@ namespace BangazonAPI.Controllers
     }
 
         // DELETE api/values/5
-        // [HttpDelete("{id}")]
-        // public void Delete(int id)
-        // {
-        // }
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            Computer computer = _context.Computer.Single(m => m.ComputerId == id);
+            if (computer == null)
+            {
+                return NotFound();
+            }
+            _context.Computer.Remove(computer);
+            _context.SaveChanges();
+
+            return Ok(computer);
+        }
     }
 }
