@@ -8,6 +8,18 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
+/**
+ * Class: Customer Controller
+ * Purpose: Provides methods to handle http requests involving instances of the customer class.
+ * Author: Team One to What - Dylan Smith
+ * Properties:
+ *   Get(): Retrieves a list of all customer's from DB
+     Get(int CustomerId): Retrieves a list of a single customer specified by Id in the url or the request
+     Post(new Customer customer): Creates a new instance of the customer class and add's it to the Db
+     CustomerExists(int CustomerId): used by Post and Put methods to see if a specific instance of the customer class exists already
+     Put(int CustomerId): Modifies a single customer instance specified by Id in the url request
+ */
+
 namespace BangazonAPI.Controllers
 {
     [Route("api/[controller]")]

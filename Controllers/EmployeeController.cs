@@ -8,6 +8,20 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
+/**
+ * Class: 
+ * Purpose: The Order class is used to store all order information.
+ * Author: Team Delta
+ * Properties:
+ *   OrderId: A unique idetification number for each order 
+     UserId: The user who created/completed this order
+     User: All of the user information that has created/completed this order
+     PaymentTypeId: The specific payment that was used for this order. This also indicates whether this is a current order, or a completed order. If the PaymentTypeId is null, the payment is current, if it has a value then the order has been completed by the user. 
+     PaymentType: The type of payment used to complete the order
+     OrderProducts: A collection of OrderProducts to allow database traversing
+ */
+
+
 namespace BangazonAPI.Controllers
 {
     [Route("api/[controller]")]
