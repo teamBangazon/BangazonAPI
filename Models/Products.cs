@@ -6,8 +6,11 @@ namespace BangazonAPI.Models
 {
     public class Product
     {
+        //Primary key = ProductId
         [Key]
         public int ProductId {get; set;}
+
+        // Foreign Key #1 is ProductTypeId
 
         // public int ProductTypeId {get; set;}
 
@@ -22,6 +25,8 @@ namespace BangazonAPI.Models
         [Required]
         public string Description {get; set;}
 
+        //Foreign Key #2 is CustomerId
+        
         // public int CustomerId {get; set;}
 
         // public Customer Customer {get; set;}

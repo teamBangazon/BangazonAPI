@@ -20,9 +20,9 @@ namespace BangazonAPI.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime DateHired {get; set;}
         
-        // public int DepartmentId {get; set;}
+        public int DepartmentId {get; set;}
 
-        // public Department Department {get; set;}
+        public Department Department {get; set;}
         
         [DefaultValue (false)]
         public bool Supervisor {get; set;}
