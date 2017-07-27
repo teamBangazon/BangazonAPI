@@ -139,9 +139,23 @@ namespace BangazonAPI.Controllers
     }
 
         // DELETE api/values/5
-        // [HttpDelete("{id}")]
-        // public void Delete(int id)
-        // {
-        // }
+         [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            TrainingProgram trainingprogram = _context.TrainingProgram.Single(m => m.TrainingProgramId == id);
+            if (trainingprogram == null)
+            {
+                return NotFound();
+            }
+            _context.TrainingProgram.Remove(trainingprogram);
+            _context.SaveChanges();
+
+            return Ok(trainingprogram);
+        }
     }
 }

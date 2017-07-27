@@ -29,5 +29,6 @@ namespace BangazonAPI.Models
 
         [DefaultValue (false)]
         public bool Active { get; set; }
+
     }
 }
