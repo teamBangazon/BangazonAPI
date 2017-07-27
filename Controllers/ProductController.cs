@@ -15,9 +15,9 @@ using Microsoft.EntityFrameworkCore;
 // *   Get(): Retrieves a list of all Product’s from DB
 //     Get(int ProductId): Retrieves a list of a single Product specified by Id in the url or the request
 //     Post(): Creates a new instance of the Product class and add’s it to the Db
-//     ProductExists: used by Post and Put methods to see if a specific instance of the Product class exists already
-//     Put(int ProductId): Modifies a single Product instance specified by Id in the url request
-
+//     ProductExists: used by Put and Delete methods to see if a specific instance of the Product class exists already
+//     Put(int ProductId): Modifies (edits) a single Product instance specified by Id in the url request
+//     Delete(int ProductId): Deletes a single Product instance specified by the Id in the url request
 
 namespace BangazonAPI.Controllers
 {
@@ -139,10 +139,25 @@ namespace BangazonAPI.Controllers
         return new StatusCodeResult(StatusCodes.Status204NoContent);
     }
 
-        // DELETE api/values/5
-        // [HttpDelete("{id}")]
-        // public void Delete(int id)
-        // {
-        // }
+        //DELETE api/values/5
+       [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            Product product = _context.Product.Single(m => m.ProductId == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            _context.Product.Remove(product);
+            _context.SaveChanges();
+
+            return Ok(product);
+        }
     }
 }
