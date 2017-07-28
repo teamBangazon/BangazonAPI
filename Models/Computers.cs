@@ -24,8 +24,8 @@ namespace BangazonAPI.Models
         // figure out how to input DateTime correctly through Postman
 
         [Required]
-        public string PurchasedDate {get; set;}
+        public DateTime PurchasedDate {get; set;}
         
-        public string DecommisionedDate {get; set;}        
+        public int?  DecommisionedDate {get; set;}        
     }
 }
