@@ -15,6 +15,21 @@ namespace BangazonAPI.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2");
 
+            modelBuilder.Entity("BangazonAPI.Models.Computer", b =>
+                {
+                    b.Property<int>("ComputerId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("DecommisionedDate");
+
+                    b.Property<string>("PurchasedDate")
+                        .IsRequired();
+
+                    b.HasKey("ComputerId");
+
+                    b.ToTable("Computer");
+                });
+
             modelBuilder.Entity("BangazonAPI.Models.Customer", b =>
                 {
                     b.Property<int>("CustomerId")
@@ -35,7 +50,6 @@ namespace BangazonAPI.Migrations
                     b.HasKey("CustomerId");
 
                     b.ToTable("Customer");
-
                 });
 
             modelBuilder.Entity("BangazonAPI.Models.Employee", b =>
@@ -58,6 +72,23 @@ namespace BangazonAPI.Migrations
                     b.HasKey("EmployeeId");
 
                     b.ToTable("Employee");
+                });
+
+            modelBuilder.Entity("BangazonAPI.Models.Order", b =>
+                {
+                    b.Property<int>("OrderId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CreatedOn");
+
+                    b.Property<string>("Customer")
+                        .IsRequired();
+
+                    b.Property<string>("PaymentType");
+
+                    b.HasKey("OrderId");
+
+                    b.ToTable("Order");
                 });
         }
     }
