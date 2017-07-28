@@ -27,9 +27,9 @@ namespace BangazonAPI.Models
 
         // Foreign Key #1 is ProductTypeId
 
-        // public int ProductTypeId {get; set;}
+        public int ProductTypeId {get; set;}
 
-        // public ProductType ProductType {get; set;}
+        public ProductType ProductType {get; set;}
 
         [Required]
         public string Title {get; set;}

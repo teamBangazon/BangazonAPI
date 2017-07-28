@@ -25,10 +25,6 @@ namespace BangazonAPI.Models
         [Required]
         public DateTime EndDate { get; set; }
         
-        // public DateTime lastInteraction { get; set; }
-
-        [DefaultValue (false)]
-        public bool Active { get; set; }
-
+        public int MaxAttendees { get; set; }
     }
 }

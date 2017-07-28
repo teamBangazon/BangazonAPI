@@ -33,8 +33,5 @@ namespace BangazonAPI.Models
         public Department Department {get; set;}  
         [DefaultValue (false)]
         public bool Supervisor {get; set;}
-
-
-        
     }
 }

@@ -20,9 +20,6 @@ namespace BangazonAPI.Models
         [Key]
         public int ComputerId {get; set;}
 
-        // need to change strings to DateTime type
-        // figure out how to input DateTime correctly through Postman
-
         [Required]
         public DateTime PurchasedDate {get; set;}
         

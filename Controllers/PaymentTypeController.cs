@@ -6,44 +6,44 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 /*  
-* Class: ProductTypeController
- * Purpose:Provides methods to handle http requests involving instances of the ProductType class.
+* Class: PaymentType
+ * Purpose: The PaymentType Class holds PaymentType information.
  * Author: One-to-What(Willie)
  * Methods:
-    Get(): Retrieves a list of all ProductTypes from DB
-    Get(int id): Retrieves a list of a single ProductType specified by Id in the url or the request
-    Post(): Adds ProductType object to DB
-    Put(int id): Edits ProductType object in DB (must include id in object)
-    Delete(int id): Deletes ProductType object from DB
+    Get(): Retrieves a list of all PaymentTypes from DB
+    Get(int id): Retrieves a list of a single PaymentType specified by Id in the url or the request
+    Post(): Adds PaymentType object to DB
+    Put(int id): Edits PaymentType object in DB (must include id in object)
+    Delete(int id): Deletes PaymentType object from DB
  *  
  */
 
 namespace BangazonAPI.Controllers
 {
     [Route("api/[controller]")]
-    public class ProductTypeController : Controller
+    public class PaymentTypeController : Controller
     {
         private BangazonAPIContext _context;
-        public ProductTypeController(BangazonAPIContext ctx)
+        public PaymentTypeController(BangazonAPIContext ctx)
         {
             _context = ctx;
         }
 
-        //GET api/producttype
+        //GET api/paymenttype
         [HttpGet]
         public IActionResult Get()
         {
-            IQueryable<object> producttypes = from producttype in _context.ProductType select producttype;
+            IQueryable<object> paymenttypes = from paymenttype in _context.PaymentType select paymenttype;
 
-            if (producttypes == null)
+            if (paymenttypes == null)
             {
                 return NotFound();
             }
-            return Ok(producttypes);
+            return Ok(paymenttypes);
         }
 
-        //GET api/producttype/1
-        [HttpGet("{id}", Name = "GetProductType")]
+        //GET api/paymenttype/1
+        [HttpGet("{id}", Name = "GetPaymentType")]
         public IActionResult Get([FromRoute] int id)
         {
             if (!ModelState.IsValid)
@@ -53,13 +53,13 @@ namespace BangazonAPI.Controllers
 
             try
             {
-                ProductType producttype = _context.ProductType.Single(m => m.ProductTypeId == id);
+                PaymentType paymenttype = _context.PaymentType.Single(m => m.PaymentTypeId == id);
 
-                if (producttype == null)
+                if (paymenttype == null)
                 {
                     return NotFound();
                 }
-                return Ok(producttype);
+                return Ok(paymenttype);
             }
             catch (System.InvalidOperationException ex)
             {
@@ -67,16 +67,16 @@ namespace BangazonAPI.Controllers
             }
         }
 
-        //POST api/producttype
+        //POST api/paymenttype
         [HttpPost]
-        public IActionResult Post([FromBody] ProductType producttype)
+        public IActionResult Post([FromBody] PaymentType paymenttype)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.ProductType.Add(producttype);
+            _context.PaymentType.Add(paymenttype);
 
             try
             {
@@ -84,7 +84,7 @@ namespace BangazonAPI.Controllers
             }
             catch (DbUpdateException)
             {
-                if (ProductTypeExists(producttype.ProductTypeId))
+                if (PaymentTypeExists(paymenttype.PaymentTypeId))
                 {
                     return new StatusCodeResult(StatusCodes.Status409Conflict);
                 }
@@ -93,30 +93,30 @@ namespace BangazonAPI.Controllers
                     throw;
                 }
             }
-            return CreatedAtRoute("GetProductType", new {id = producttype.ProductTypeId}, producttype);
+            return CreatedAtRoute("GetPaymentType", new {id = paymenttype.PaymentTypeId}, paymenttype);
         }
 
-        private bool ProductTypeExists(int producttypeId)
+        private bool PaymentTypeExists(int paymenttypeId)
         {
-            return _context.ProductType.Count(e => e.ProductTypeId == producttypeId) >0;
+            return _context.PaymentType.Count(e => e.PaymentTypeId == paymenttypeId) >0;
         }
 
-        //PUT api/producttype/1
+        //PUT api/paymenttype/1
         [HttpPut("{id}")]
 
-        public IActionResult Put(int id, [FromBody] ProductType producttype)
+        public IActionResult Put(int id, [FromBody] PaymentType paymenttype)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != producttype.ProductTypeId)
+            if (id != paymenttype.PaymentTypeId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(producttype).State = EntityState.Modified;
+            _context.Entry(paymenttype).State = EntityState.Modified;
 
             try
             {
@@ -124,7 +124,7 @@ namespace BangazonAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProductTypeExists(id))
+                if (!PaymentTypeExists(id))
                 {
                     return NotFound();
                 }
@@ -136,7 +136,7 @@ namespace BangazonAPI.Controllers
             return new StatusCodeResult(StatusCodes.Status204NoContent);
         }
 
-        //DELET api/producttype/1
+        //DELET api/paymenttype/1
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
@@ -145,15 +145,15 @@ namespace BangazonAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            ProductType producttype = _context.ProductType.Single(m => m.ProductTypeId == id);
-            if (producttype == null)
+            PaymentType paymenttype = _context.PaymentType.Single(m => m.PaymentTypeId == id);
+            if (paymenttype == null)
             {
                 return NotFound();
             }
-            _context.ProductType.Remove(producttype);
+            _context.PaymentType.Remove(paymenttype);
             _context.SaveChanges();
 
-            return Ok(producttype);
+            return Ok(paymenttype);
         }
     }
 }

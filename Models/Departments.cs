@@ -22,8 +22,6 @@ namespace BangazonAPI.Models
         [Required]
         public string Name {get; set;}
 
-        public double ExpenseBudget {get; set;}
-
-        
+        public double ExpenseBudget {get; set;}  
     }
 }

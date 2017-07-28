@@ -8,15 +8,15 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-// * Class: Customer Controller
-// * Purpose: Provides methods to handle http requests involving    instances of the customer class.
+// * Class: Order Controller
+// * Purpose: Provides methods to handle http requests involving instances of the Order class.
 // * Author: Team One to What
 // * Properties:
-// *   Get(): Retrieves a list of all customer’s from DB
-//     Get(int id): Retrieves a list of a single customer specified by Id in the url or the request
-//     Post: Creates a new instance of the customer class and add’s it to the Db
-//     CustomerExists: used by Post and Put methods to see if a specific instance of the customer class exists already
-//     Put: Modifies a single customer instance specified by Id in the url request
+// *   Get(): Retrieves a list of all orders from DB
+//     Get(int id): Retrieves a list of a single order specified by Id in the url or the request
+//     Post: Creates a new instance of the order class and add’s it to the Db
+//     CustomerExists: used by Post and Put methods to see if a specific instance of the order class exists already
+//     Put: Modifies a single order instance specified by Id in the url request
 // */
 
 namespace BangazonAPI.Controllers
