@@ -8,6 +8,19 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
+/*
+* Class: ProductType
+ * Purpose: The Computer Class holds Computer information.
+ * Author: One-to-What(Willie)
+ * Methods:
+    Get(): Retrieves a list of all Computers from DB
+    Get(int id): Retrieves a list of a single Computer specified by Id in the url or the request
+    Post(): Adds Computer object to DB
+    Put(int id): Edits Computer object in DB (must include id in object)
+    Delete(int id): Deletes Computer object from DB
+ *  
+ */
+
 namespace BangazonAPI.Controllers
 {
     [Route("api/[controller]")]
