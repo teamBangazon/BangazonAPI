@@ -8,27 +8,24 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-/*
-* Class: ProductType
- * Purpose: The Computer Class holds Computer information.
- * Author: One-to-What(Willie)
- * Methods:
-    Get(): Retrieves a list of all Computers from DB
-    Get(int id): Retrieves a list of a single Computer specified by Id in the url or the request
-    Post(): Adds Computer object to DB
-    Put(int id): Edits Computer object in DB (must include id in object)
-    Delete(int id): Deletes Computer object from DB
- *  
- */
+// CLASS: TrainingProgram Controller
+// PURPOSE: Provides methods to handle http requests for the TrainingProgram class
+// AUTHOR: Team ONE TO WHAT
+// PROPERTIES: 
+// Get(): Retrieves list of all TrainingProgram from Db.
+// Get(int id): Retrieves list of a single TrainingProgram from Db as specified by the id.
+// Post: Creates new instance of TrainingProgram class and adds it to the Db.
+// Put: Edits a single TrainingProgram instance specified by the id in the url request.
+// Customer Exists: used by Post and Put methods to see if a specific instance of the TrainingProgram class already exists. 
 
 namespace BangazonAPI.Controllers
 {
     [Route("api/[controller]")]
-    public class ComputerController : Controller
+    public class TrainingProgramController : Controller
     {
         private BangazonAPIContext _context;
 
-        public ComputerController(BangazonAPIContext ctx)
+        public TrainingProgramController(BangazonAPIContext ctx)
         {
             _context = ctx;
         }
@@ -37,17 +34,17 @@ namespace BangazonAPI.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            IQueryable<object> computers = from computer in _context.Computer select computer;
+            IQueryable<object> trainingprograms = from trainingprogram in _context.TrainingProgram select trainingprogram;
 
-            if (computers == null)
+            if (trainingprograms == null)
             {
                 return NotFound();
             }
-            return Ok(computers);
+            return Ok(trainingprograms);
         }
 
         // GET api/values/5
-        [HttpGet("{id}", Name = "GetComputer")]
+        [HttpGet("{id}", Name = "GetTrainingProgram")]
         
         public IActionResult Get([FromRoute] int id)
         {
@@ -58,13 +55,13 @@ namespace BangazonAPI.Controllers
 
         try
         {
-            Computer computer = _context.Computer.Single(m => m.ComputerId == id);
+            TrainingProgram trainingprogram = _context.TrainingProgram.Single(m => m.TrainingProgramId == id);
 
-            if (computer == null)
+            if (trainingprogram == null)
             {
                 return NotFound();
             }
-            return Ok(computer);
+            return Ok(trainingprogram);
         }
         catch (System.InvalidOperationException ex)
         {
@@ -74,14 +71,14 @@ namespace BangazonAPI.Controllers
 
         // POST api/values
         [HttpPost]
-        public IActionResult Post([FromBody] Computer computer)
+        public IActionResult Post([FromBody] TrainingProgram trainingprogram)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
         
-        _context.Computer.Add(computer);
+        _context.TrainingProgram.Add(trainingprogram);
 
         try
         {
@@ -89,7 +86,7 @@ namespace BangazonAPI.Controllers
         }
         catch (DbUpdateException)
         {
-            if (ComputerExists(computer.ComputerId))
+            if (TrainingProgramExists(trainingprogram.TrainingProgramId))
             {
                 return new StatusCodeResult(StatusCodes.Status409Conflict);
             }
@@ -98,30 +95,30 @@ namespace BangazonAPI.Controllers
                 throw;
             }
         }
-        return CreatedAtRoute("GetComputer", new {id = computer.ComputerId}, computer);
+        return CreatedAtRoute("GetTrainingProgram", new {id = trainingprogram.TrainingProgramId}, trainingprogram);
     }
 
-    private bool ComputerExists(int computerId)
+    private bool TrainingProgramExists(int trainingprogramId)
     {
-        return _context.Computer.Count(e => e.ComputerId == computerId) > 0;
+        return _context.TrainingProgram.Count(e => e.TrainingProgramId == trainingprogramId) > 0;
     }
 
         // PUT api/values/5
         [HttpPut("{id}")]
         
-        public IActionResult Put(int id, [FromBody] Computer computer)
+        public IActionResult Put(int id, [FromBody] TrainingProgram trainingprogram)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != computer.ComputerId)
+            if (id != trainingprogram.TrainingProgramId)
             {
                 return BadRequest();
             }
         
-        _context.Entry(computer).State = EntityState.Modified;
+        _context.Entry(trainingprogram).State = EntityState.Modified;
 
         try
         {
@@ -129,7 +126,7 @@ namespace BangazonAPI.Controllers
         }
         catch (DbUpdateConcurrencyException)
         {
-            if (!ComputerExists(id))
+            if (!TrainingProgramExists(id))
             {
                 return NotFound();
             }
@@ -142,7 +139,7 @@ namespace BangazonAPI.Controllers
     }
 
         // DELETE api/values/5
-        [HttpDelete("{id}")]
+         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
             if (!ModelState.IsValid)
@@ -150,15 +147,15 @@ namespace BangazonAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            Computer computer = _context.Computer.Single(m => m.ComputerId == id);
-            if (computer == null)
+            TrainingProgram trainingprogram = _context.TrainingProgram.Single(m => m.TrainingProgramId == id);
+            if (trainingprogram == null)
             {
                 return NotFound();
             }
-            _context.Computer.Remove(computer);
+            _context.TrainingProgram.Remove(trainingprogram);
             _context.SaveChanges();
 
-            return Ok(computer);
+            return Ok(trainingprogram);
         }
     }
 }

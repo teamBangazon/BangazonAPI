@@ -8,26 +8,25 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-/**
- * Class: Customer Controller
- * Purpose: Provides methods to handle http requests involving instances of the customer class.
- * Author: Team One to What - Dylan Smith
- * Properties:
- *   Get(): Retrieves a list of all customer's from DB
-     Get(int CustomerId): Retrieves a list of a single customer specified by Id in the url or the request
-     Post(new Customer customer): Creates a new instance of the customer class and add's it to the Db
-     CustomerExists(int CustomerId): used by Post and Put methods to see if a specific instance of the customer class exists already
-     Put(int CustomerId): Modifies a single customer instance specified by Id in the url request
- */
+// * Class: Department Controller
+// * Purpose: Provides methods to handle http requests involving instances of the Department class.
+// * Author: Team One to What
+// * Properties:
+// *   Get(): Retrieves a list of all Department’s from DB
+//     Get(int DepartmentId): Retrieves a list of a single Department specified by Id in the url or the request
+//     Post(): Creates a new instance of the Department class and add’s it to the Db
+//     DepartmentExists: used by Post and Put methods to see if a specific instance of the Department class exists already
+//     Put(int DepartmentId): Modifies a single Department instance specified by Id in the url request
+
 
 namespace BangazonAPI.Controllers
 {
     [Route("api/[controller]")]
-    public class CustomerController : Controller
+    public class DepartmentController : Controller
     {
         private BangazonAPIContext _context;
 
-        public CustomerController(BangazonAPIContext ctx)
+        public DepartmentController(BangazonAPIContext ctx)
         {
             _context = ctx;
         }
@@ -36,17 +35,17 @@ namespace BangazonAPI.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            IQueryable<object> customers = from customer in _context.Customer select customer;
+            IQueryable<object> departments = from department in _context.Department select department;
 
-            if (customers == null)
+            if (departments == null)
             {
                 return NotFound();
             }
-            return Ok(customers);
+            return Ok(departments);
         }
 
         // GET api/values/5
-        [HttpGet("{id}", Name = "GetCustomer")]
+        [HttpGet("{id}", Name = "GetDepartment")]
         
         public IActionResult Get([FromRoute] int id)
         {
@@ -57,13 +56,13 @@ namespace BangazonAPI.Controllers
 
         try
         {
-            Customer customer = _context.Customer.Single(m => m.CustomerId == id);
+            Department department = _context.Department.Single(m => m.DepartmentId == id);
 
-            if (customer == null)
+            if (department == null)
             {
                 return NotFound();
             }
-            return Ok(customer);
+            return Ok(department);
         }
         catch (System.InvalidOperationException ex)
         {
@@ -73,14 +72,14 @@ namespace BangazonAPI.Controllers
 
         // POST api/values
         [HttpPost]
-        public IActionResult Post([FromBody] Customer customer)
+        public IActionResult Post([FromBody] Department department)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
         
-        _context.Customer.Add(customer);
+        _context.Department.Add(department);
 
         try
         {
@@ -88,7 +87,7 @@ namespace BangazonAPI.Controllers
         }
         catch (DbUpdateException)
         {
-            if (CustomerExists(customer.CustomerId))
+            if (DepartmentExists(department.DepartmentId))
             {
                 return new StatusCodeResult(StatusCodes.Status409Conflict);
             }
@@ -97,30 +96,30 @@ namespace BangazonAPI.Controllers
                 throw;
             }
         }
-        return CreatedAtRoute("GetCustomer", new {id = customer.CustomerId}, customer);
+        return CreatedAtRoute("GetEmployee", new {id = department.DepartmentId}, department);
     }
 
-    private bool CustomerExists(int customerId)
+    private bool DepartmentExists(int DepartmentId)
     {
-        return _context.Customer.Count(e => e.CustomerId == customerId) > 0;
+        return _context.Department.Count(e => e.DepartmentId == DepartmentId) > 0;
     }
 
         // PUT api/values/5
         [HttpPut("{id}")]
         
-        public IActionResult Put(int id, [FromBody] Customer cusotmer)
+        public IActionResult Put(int id, [FromBody] Department department)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != cusotmer.CustomerId)
+            if (id != department.DepartmentId)
             {
                 return BadRequest();
             }
         
-        _context.Entry(cusotmer).State = EntityState.Modified;
+        _context.Entry(department).State = EntityState.Modified;
 
         try
         {
@@ -128,7 +127,7 @@ namespace BangazonAPI.Controllers
         }
         catch (DbUpdateConcurrencyException)
         {
-            if (!CustomerExists(id))
+            if (!DepartmentExists(id))
             {
                 return NotFound();
             }
@@ -140,5 +139,10 @@ namespace BangazonAPI.Controllers
         return new StatusCodeResult(StatusCodes.Status204NoContent);
     }
 
+        // DELETE api/values/5
+        // [HttpDelete("{id}")]
+        // public void Delete(int id)
+        // {
+        // }
     }
 }

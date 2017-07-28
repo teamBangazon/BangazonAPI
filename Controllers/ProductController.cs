@@ -8,27 +8,25 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-/*
-* Class: ProductType
- * Purpose: The Computer Class holds Computer information.
- * Author: One-to-What(Willie)
- * Methods:
-    Get(): Retrieves a list of all Computers from DB
-    Get(int id): Retrieves a list of a single Computer specified by Id in the url or the request
-    Post(): Adds Computer object to DB
-    Put(int id): Edits Computer object in DB (must include id in object)
-    Delete(int id): Deletes Computer object from DB
- *  
- */
+// * Class: Product Controller
+// * Purpose: Provides methods to handle http requests involving instances of the Product class.
+// * Author: Team One to What
+// * Properties:
+// *   Get(): Retrieves a list of all Product’s from DB
+//     Get(int ProductId): Retrieves a list of a single Product specified by Id in the url or the request
+//     Post(): Creates a new instance of the Product class and add’s it to the Db
+//     ProductExists: used by Put and Delete methods to see if a specific instance of the Product class exists already
+//     Put(int ProductId): Modifies (edits) a single Product instance specified by Id in the url request
+//     Delete(int ProductId): Deletes a single Product instance specified by the Id in the url request
 
 namespace BangazonAPI.Controllers
 {
     [Route("api/[controller]")]
-    public class ComputerController : Controller
+    public class ProductController : Controller
     {
         private BangazonAPIContext _context;
 
-        public ComputerController(BangazonAPIContext ctx)
+        public ProductController(BangazonAPIContext ctx)
         {
             _context = ctx;
         }
@@ -37,17 +35,17 @@ namespace BangazonAPI.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            IQueryable<object> computers = from computer in _context.Computer select computer;
+            IQueryable<object> products = from product in _context.Product select product;
 
-            if (computers == null)
+            if (products == null)
             {
                 return NotFound();
             }
-            return Ok(computers);
+            return Ok(products);
         }
 
         // GET api/values/5
-        [HttpGet("{id}", Name = "GetComputer")]
+        [HttpGet("{id}", Name = "GetProduct")]
         
         public IActionResult Get([FromRoute] int id)
         {
@@ -58,13 +56,13 @@ namespace BangazonAPI.Controllers
 
         try
         {
-            Computer computer = _context.Computer.Single(m => m.ComputerId == id);
+            Product product = _context.Product.Single(m => m.ProductId == id);
 
-            if (computer == null)
+            if (product == null)
             {
                 return NotFound();
             }
-            return Ok(computer);
+            return Ok(product);
         }
         catch (System.InvalidOperationException ex)
         {
@@ -74,14 +72,14 @@ namespace BangazonAPI.Controllers
 
         // POST api/values
         [HttpPost]
-        public IActionResult Post([FromBody] Computer computer)
+        public IActionResult Post([FromBody] Product product)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
         
-        _context.Computer.Add(computer);
+        _context.Product.Add(product);
 
         try
         {
@@ -89,7 +87,7 @@ namespace BangazonAPI.Controllers
         }
         catch (DbUpdateException)
         {
-            if (ComputerExists(computer.ComputerId))
+            if (ProductExists(product.ProductId))
             {
                 return new StatusCodeResult(StatusCodes.Status409Conflict);
             }
@@ -98,30 +96,30 @@ namespace BangazonAPI.Controllers
                 throw;
             }
         }
-        return CreatedAtRoute("GetComputer", new {id = computer.ComputerId}, computer);
+        return CreatedAtRoute("GetProduct", new {id = product.ProductId}, product);
     }
 
-    private bool ComputerExists(int computerId)
+    private bool ProductExists(int ProductId)
     {
-        return _context.Computer.Count(e => e.ComputerId == computerId) > 0;
+        return _context.Product.Count(e => e.ProductId == ProductId) > 0;
     }
 
         // PUT api/values/5
         [HttpPut("{id}")]
         
-        public IActionResult Put(int id, [FromBody] Computer computer)
+        public IActionResult Put(int id, [FromBody] Product product)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != computer.ComputerId)
+            if (id != product.ProductId)
             {
                 return BadRequest();
             }
         
-        _context.Entry(computer).State = EntityState.Modified;
+        _context.Entry(product).State = EntityState.Modified;
 
         try
         {
@@ -129,7 +127,7 @@ namespace BangazonAPI.Controllers
         }
         catch (DbUpdateConcurrencyException)
         {
-            if (!ComputerExists(id))
+            if (!ProductExists(id))
             {
                 return NotFound();
             }
@@ -141,8 +139,8 @@ namespace BangazonAPI.Controllers
         return new StatusCodeResult(StatusCodes.Status204NoContent);
     }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
+        //DELETE api/values/5
+       [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
             if (!ModelState.IsValid)
@@ -150,15 +148,16 @@ namespace BangazonAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            Computer computer = _context.Computer.Single(m => m.ComputerId == id);
-            if (computer == null)
+            Product product = _context.Product.Single(m => m.ProductId == id);
+            if (product == null)
             {
                 return NotFound();
             }
-            _context.Computer.Remove(computer);
+
+            _context.Product.Remove(product);
             _context.SaveChanges();
 
-            return Ok(computer);
+            return Ok(product);
         }
     }
 }
