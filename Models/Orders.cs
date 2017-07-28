@@ -25,9 +25,11 @@ namespace BangazonAPI.Models
         // figure out how to input DateTime correctly through Postman
 
         [Required]
-        public string Customer { get; set; }
+        public int CustomerId { get; set; }
+        public Customer Customer {get; set;}
         
-        public string PaymentType { get; set; }
+        // public int PaymentTypeId { get; set; }
+        // public PaymentType PaymentType { get; set; }
 
         public string CreatedOn { get; set; }        
     }
