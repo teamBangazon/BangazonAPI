@@ -9,8 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 /*
-* Class: ProductType
- * Purpose: The Computer Class holds Computer information.
+* Class: Computer Controller
+ * Purpose: Provides methods to handle http requests involving instances of the Computer class.
  * Author: One-to-What(Willie)
  * Methods:
     Get(): Retrieves a list of all Computers from DB
