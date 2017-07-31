@@ -27,10 +27,11 @@ namespace BangazonAPI.Models
         [Required]
         public string LastName {get; set;}
         [Required]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime DateCreated {get; set;}
         public DateTime lastInteraction {get; set;}
+        
         [DefaultValue (false)]
         public bool Active {get; set;}
     }
