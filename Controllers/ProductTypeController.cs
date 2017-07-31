@@ -5,17 +5,16 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-/*  
-* Class: ProductTypeController
- * Purpose:Provides methods to handle http requests involving instances of the ProductType class.
- * Author: One-to-What(Willie)
- * Methods:
-    Get(): Retrieves a list of all ProductTypes from DB
-    Get(int id): Retrieves a list of a single ProductType specified by Id in the url or the request
-    Post(): Adds ProductType object to DB
-    Put(int id): Edits ProductType object in DB (must include id in object)
-    Delete(int id): Deletes ProductType object from DB
- *  
+/*  * CLASS: ProductTypeController
+    * PURPOSE:Provides methods to handle http requests involving instances of the ProductType class.
+    * AUTHOR: One-to-What(Willie)
+    * METHODS:
+        Get(): Retrieves a list of all ProductTypes from DB
+        Get(int id): Retrieves a single ProductType specified by Id in the url or the request
+        Post(): Adds ProductType object to DB
+        ProductTypeExists: used by Put and Delete methods to see if a specific instance of the ProductType object exists already
+        Put(int id): Edits ProductType object specified by Id in url in DB (must include id in object)
+        Delete(int id): Deletes ProductType object specified by Id in url from DB 
  */
 
 namespace BangazonAPI.Controllers

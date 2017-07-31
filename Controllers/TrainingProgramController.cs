@@ -8,15 +8,17 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-// CLASS: TrainingProgram Controller
-// PURPOSE: Provides methods to handle http requests for the TrainingProgram class
-// AUTHOR: Team ONE TO WHAT
-// PROPERTIES: 
-// Get(): Retrieves list of all TrainingProgram from Db.
-// Get(int id): Retrieves list of a single TrainingProgram from Db as specified by the id.
-// Post: Creates new instance of TrainingProgram class and adds it to the Db.
-// Put: Edits a single TrainingProgram instance specified by the id in the url request.
-// Customer Exists: used by Post and Put methods to see if a specific instance of the TrainingProgram class already exists. 
+/*  * CLASS: TrainingProgram Controller
+    * PURPOSE: Provides methods to handle http requests for the TrainingProgram class
+    * AUTHOR: Team ONE TO WHAT
+    * METHODS: 
+        Get(): Retrieves list of all TrainingProgram from Db.
+        Get(int id): Retrieves a single TrainingProgram from Db as specified by the id.
+        Post: Creates new instance of TrainingProgram class and adds it to the Db.
+        TrainingProgramExists: used by Put and Delete methods to see if a specific instance of the Training object exists already
+        Put(int id): Edits a single TrainingProgram instance specified by the id in the url request.
+        Delete(int id): Deletes TrainingProgram object specified by Id in url from DB  
+*/
 
 namespace BangazonAPI.Controllers
 {

@@ -8,15 +8,16 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-// * Class: Department Controller
-// * Purpose: Provides methods to handle http requests involving instances of the Department class.
-// * Author: Team One to What
-// * Properties:
-// *   Get(): Retrieves a list of all Department’s from DB
-//     Get(int DepartmentId): Retrieves a list of a single Department specified by Id in the url or the request
-//     Post(): Creates a new instance of the Department class and add’s it to the Db
-//     DepartmentExists: used by Post and Put methods to see if a specific instance of the Department class exists already
-//     Put(int DepartmentId): Modifies a single Department instance specified by Id in the url request
+/*  * CLASS: Department Controller
+    * PURPOSE: Provides methods to handle http requests involving instances of the Department class.
+    * AUTHOR: Team One to What
+    * METHODS:
+        Get(): Retrieves a list of all Department’s from DB
+        Get(int id): Retrieves a single Department specified by Id in the url or the request
+        Post(): Creates a new instance of the Department class and add’s it to the Db
+        DepartmentExists: used by Post and Put methods to see if a specific instance of the Department class exists already
+        Put(int id): Modifies a single Department instance specified by Id in the url request 
+*/
 
 
 namespace BangazonAPI.Controllers
@@ -137,12 +138,6 @@ namespace BangazonAPI.Controllers
             }
         }
         return new StatusCodeResult(StatusCodes.Status204NoContent);
-    }
-
-        // DELETE api/values/5
-        // [HttpDelete("{id}")]
-        // public void Delete(int id)
-        // {
-        // }
+        }
     }
 }
