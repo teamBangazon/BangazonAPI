@@ -74,10 +74,10 @@ For a visual representation of our database structure and relationships, please 
 
 *Customer
 *Product Type
-*Product *Dependant on there being a product Type
-*Order *Dependant on there being a customer and payment type
-*Payment Type *dependent on there being a customer
+*Product Dependant on there being a product Type
+*Order Dependant on there being a customer and payment type
+*Payment Type Ddependent on there being a customer
 *Computer 
 *Department 
-*Employee *dependent upon there being a department 
+*Employee Dependent upon there being a department 
 *Training Program 
