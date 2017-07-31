@@ -139,4 +139,7 @@ namespace BangazonAPI.Controllers
             }
         }
         return new StatusCodeResult(StatusCodes.Status204NoContent);
+        }
+    
+    }
 }
