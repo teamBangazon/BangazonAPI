@@ -59,12 +59,12 @@ We also recomend [Postman](https://www.getpostman.com/) for working with our API
 
 After you have the appropriate tools installed you will can clone the repo to your local system and follow the below steps:
 
-````
+```
 dotnet restore
 dotnet ef migrations add initial
 dotnet ef migrations database update
 dotnet run
-````
+```
 
 ### Once API is running
 
