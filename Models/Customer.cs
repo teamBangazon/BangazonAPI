@@ -30,6 +30,7 @@ namespace BangazonAPI.Models
         [DataType(DataType.Date)]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime DateCreated {get; set;}
+        [DataType(DataType.Date)]
         public DateTime lastInteraction {get; set;}
         
         [DefaultValue (false)]
