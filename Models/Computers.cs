@@ -21,6 +21,7 @@ namespace BangazonAPI.Models
         public int ComputerId {get; set;}
 
         [Required]
+        [DataType(DataType.DateTime)]
         public DateTime PurchasedDate {get; set;}
         
         public int?  DecommisionedDate {get; set;}        
