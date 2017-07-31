@@ -152,10 +152,14 @@ namespace BangazonAPI.Controllers
             {
                 return NotFound();
             }
-            _context.TrainingProgram.Remove(trainingprogram);
-            _context.SaveChanges();
+            //else if (trainingprogram.StartDate > currentDate)
+            //  {
+                _context.TrainingProgram.Remove(trainingprogram);
+                _context.SaveChanges();
 
-            return Ok(trainingprogram);
+                return Ok(trainingprogram);
+            //      
+            //  } 
         }
     }
 }

@@ -6,13 +6,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 // * Class: Customer Controller
 // * Purpose: Provides methods to handle http requests involving    instances of the customer class.
 // * Author: Team One to What
-// * Properties:
-// *   Get(): Retrieves a list of all customer’s from DB
-//     Get(int id): Retrieves a list of a single customer specified by Id in the url or the request
-//     Post: Creates a new instance of the customer class and add’s it to the Db
-//     CustomerExists: used by Post and Put methods to see if a specific instance of the customer class exists already
-//     Put: Modifies a single customer instance specified by Id in the url request
-// */
+//  * Properties:
+//      - OrderId: A unique idetification number for each Order 
+//      - CustomerId: A unique identifier for each customer
+//      - PaymentTypeId: nullable value, unique identifier for PaymentType
+//      - PaymentType: PaymentType
+//      - CreatedOn: time of creation of the order
 
 namespace BangazonAPI.Models
 {
@@ -33,6 +32,8 @@ namespace BangazonAPI.Models
 
         public PaymentType PaymentType { get; set; }
 
-        public string CreatedOn { get; set; }        
+        [DataType(DataType.Date)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public DateTime CreatedOn { get; set; }        
     }
 }
