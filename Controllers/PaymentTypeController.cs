@@ -5,18 +5,17 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-/*  
-* Class: PaymentType
- * Purpose: The PaymentType Class holds PaymentType information.
- * Author: One-to-What(Willie)
- * Methods:
-    Get(): Retrieves a list of all PaymentTypes from DB
-    Get(int id): Retrieves a list of a single PaymentType specified by Id in the url or the request
-    Post(): Adds PaymentType object to DB
-    Put(int id): Edits PaymentType object in DB (must include id in object)
-    Delete(int id): Deletes PaymentType object from DB
- *  
- */
+/*  * CLASS: PaymentType
+    * PURPOSE: The PaymentType Class holds PaymentType information.
+    * AUTHOR: One-to-What(Willie)
+    * METHODS:
+        Get(): Retrieves a list of all PaymentTypes from DB
+        Get(int id): Retrieves a single PaymentType specified by Id in the url or the request
+        Post(): Adds PaymentType object to DB
+        PaymentTypeExists: used by Put and Delete methods to see if a specific instance of the PaymentType object exists already
+        Put(int id): Edits PaymentType object in DB (must include id in object)
+        Delete(int id): Deletes PaymentType object from DB  
+*/
 
 namespace BangazonAPI.Controllers
 {

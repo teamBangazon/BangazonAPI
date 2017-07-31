@@ -8,17 +8,15 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-/*
-* Class: Computer Controller
- * Purpose: Provides methods to handle http requests involving instances of the Computer class.
- * Author: One-to-What(Willie)
- * Methods:
-    Get(): Retrieves a list of all Computers from DB
-    Get(int id): Retrieves a list of a single Computer specified by Id in the url or the request
-    Post(): Adds Computer object to DB
-    Put(int id): Edits Computer object in DB (must include id in object)
-    Delete(int id): Deletes Computer object from DB
- *  
+/*  * CLASS: Computer Controller
+    * PURPOSE: Provides methods to handle http requests involving instances of the Computer class.
+    * AUTHOR: One-to-What(Willie)
+    * METHODS:
+        Get(): Retrieves a list of all Computers from DB
+        Get(int id): Retrieves a single Computer specified by Id in the url or the request
+        Post(): Adds Computer object to DB
+        Put(int id): Edits Computer object specified by Id in the url in DB (must include id in object)
+        Delete(int id): Deletes Computer object specified by Id in the url from DB  
  */
 
 namespace BangazonAPI.Controllers
