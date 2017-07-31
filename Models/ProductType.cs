@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 
 /*  
-* Class: ProductType
+ * Class: ProductType
  * Purpose: The ProductType Class holds ProductType information.
  * Author: One-to-What(Willie)
  * Properties:

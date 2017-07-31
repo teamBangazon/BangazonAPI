@@ -148,16 +148,21 @@ namespace BangazonAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-
             TrainingProgram trainingprogram = _context.TrainingProgram.Single(m => m.TrainingProgramId == id);
             if (trainingprogram == null)
             {
                 return NotFound();
             }
-            _context.TrainingProgram.Remove(trainingprogram);
-            _context.SaveChanges();
-
-            return Ok(trainingprogram);
+            if (trainingprogram.StartDate > DateTime.Now)
+             {
+                _context.TrainingProgram.Remove(trainingprogram);
+                _context.SaveChanges();
+             } 
+             else
+             {
+                 Console.WriteLine("pick a date in the future.");
+             }
+             return Ok(trainingprogram);
         }
     }
 }
