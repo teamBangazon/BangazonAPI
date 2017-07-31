@@ -72,12 +72,12 @@ The database will have the below tables available to add.  Tables with dependant
 
 For a visual representation of our database structure and relationships, please open the Bangazon.xml file in the root directory of this project.
 
-*Customer
-*Product Type
-*Product Dependant on there being a product Type
-*Order Dependant on there being a customer and payment type
-*Payment Type Ddependent on there being a customer
-*Computer 
-*Department 
-*Employee Dependent upon there being a department 
-*Training Program 
+* Customer
+* Product Type
+* Product Dependant on there being a product Type
+* Order Dependant on there being a customer and payment type
+* Payment Type Ddependent on there being a customer
+* Computer 
+* Department 
+* Employee Dependent upon there being a department 
+* Training Program 
