@@ -112,14 +112,17 @@ namespace BangazonAPI.Data
                 {
                     new PaymentType {
                         Type = "Visa",
+                        AccountNumber = 56783422,
                         CustomerId = customers.Single(s => s.FirstName == "Tim").CustomerId
                     },
                     new PaymentType {
                         Type = "MasterCard",
+                        AccountNumber = 489238252,
                         CustomerId = customers.Single(s => s.FirstName == "Kim").CustomerId
                     },
                     new PaymentType {
                         Type = "American Express",
+                        AccountNumber = 30489204,
                         CustomerId = customers.Single(s => s.FirstName == "Mitch").CustomerId
                     },
                 };
