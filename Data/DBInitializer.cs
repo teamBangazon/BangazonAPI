@@ -39,55 +39,55 @@ namespace BangazonAPI.Data
                 }
                 context.SaveChanges();
 
-                // var producttypes = new ProductType[]
-                // {
-                //     new ProductType {
-                //         Type = "Household Goods"
-                //     },
-                //     new ProductType {
-                //         Type = "Electronics"
-                //     },
-                //     new ProductType {
-                //         Type = "Musical Instruments"
-                //     },
-                // };
+                var producttypes = new ProductType[]
+                {
+                    new ProductType {
+                        Type = "Household Goods"
+                    },
+                    new ProductType {
+                        Type = "Electronics"
+                    },
+                    new ProductType {
+                        Type = "Musical Instruments"
+                    },
+                };
 
-                // foreach (ProductType i in producttypes)
-                // {
-                //     context.ProductType.Add(i);
-                // }
-                // context.SaveChanges();
+                foreach (ProductType i in producttypes)
+                {
+                    context.ProductType.Add(i);
+                }
+                context.SaveChanges();
 
-                // var products = new Product[]
-                // {
-                //     new Product {
-                //         ProductTypeId = producttypes.Single(s => s.Type == "Electronics").ProductTypeId,
-                //         Title = "Time Machine",
-                //         Price = 800,
-                //         Description = "Trust me, it works. Really, it does!",
-                //         CustomerId = customers.Single(s => s.FirstName == "Tim").CustomerId,
-                //     },
-                //     new Product {
-                //         ProductTypeId = producttypes.Single(s => s.Type == "Household Goods").ProductTypeId,
-                //         Title = "Couch",
-                //         Price = 125,
-                //         Description = "Good couch, small rip on left side.",
-                //         CustomerId = customers.Single(s => s.FirstName == "Mitch").CustomerId,
-                //     },
-                //     new Product {
-                //         ProductTypeId = producttypes.Single(s => s.Type == "Musical Instruments").ProductTypeId,
-                //         Title = "Acordian",
-                //         Price = 2000,
-                //         Description = "No clue why I have this, please take it off my hands!",
-                //         CustomerId = customers.Single(s => s.FirstName == "Kim").CustomerId,
-                //     }
-                // };
+                var products = new Product[]
+                {
+                    new Product {
+                        ProductTypeId = producttypes.Single(m => m.Type == "Electronics").ProductTypeId,
+                        Title = "Time Machine",
+                        Price = 800,
+                        Description = "Trust me, it works. Really, it does!",
+                        CustomerId = customers.Single(s => s.FirstName == "Tim").CustomerId,
+                    },
+                    new Product {
+                        ProductTypeId = producttypes.Single(m => m.Type == "Household Goods").ProductTypeId,
+                        Title = "Couch",
+                        Price = 125,
+                        Description = "Good couch, small rip on left side.",
+                        CustomerId = customers.Single(s => s.FirstName == "Mitch").CustomerId,
+                    },
+                    new Product {
+                        ProductTypeId = producttypes.Single(m => m.Type == "Musical Instruments").ProductTypeId,
+                        Title = "Acordian",
+                        Price = 2000,
+                        Description = "No clue why I have this, please take it off my hands!",
+                        CustomerId = customers.Single(s => s.FirstName == "Kim").CustomerId,
+                    }
+                };
 
-                // foreach (Product i in products)
-                // {
-                //     context.Product.Add(i);
-                // }
-                // context.SaveChanges();
+                foreach (Product i in products)
+                {
+                    context.Product.Add(i);
+                }
+                context.SaveChanges();
 
                 var orders = new Order[]
                 {
