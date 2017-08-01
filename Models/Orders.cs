@@ -32,8 +32,8 @@ namespace BangazonAPI.Models
 
         public PaymentType PaymentType { get; set; }
 
-        [DataType(DataType.Date)]  
+        [DataType(DataType.DateTime)]  
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public string CreatedOn { get; set; }        
+        public DateTime CreatedOn { get; set; }        
     }
 }
