@@ -39,72 +39,72 @@ namespace BangazonAPI.Data
                 }
                 context.SaveChanges();
 
-                var producttypes = new ProductType[]
-                {
-                    new ProductType {
-                        Type = "Household Goods"
-                    },
-                    new ProductType {
-                        Type = "Electronics"
-                    },
-                    new ProductType {
-                        Type = "Musical Instruments"
-                    },
-                };
+                // var producttypes = new ProductType[]
+                // {
+                //     new ProductType {
+                //         Type = "Household Goods"
+                //     },
+                //     new ProductType {
+                //         Type = "Electronics"
+                //     },
+                //     new ProductType {
+                //         Type = "Musical Instruments"
+                //     },
+                // };
 
-                foreach (ProductType i in producttypes)
-                {
-                    context.ProductType.Add(i);
-                }
-                context.SaveChanges();
+                // foreach (ProductType i in producttypes)
+                // {
+                //     context.ProductType.Add(i);
+                // }
+                // context.SaveChanges();
 
-                var products = new Product[]
-                {
-                    new Product {
-                        ProductTypeId = 2,
-                        Title = "Time Machine",
-                        Price = 800,
-                        Description = "Trust me, it works. Really, it does!",
-                        CustomerId = 3
-                    },
-                    new Product {
-                        ProductTypeId = 1,
-                        Title = "Couch",
-                        Price = 125,
-                        Description = "Good couch, small rip on left side.",
-                        CustomerId = 2
-                    },
-                    new Product {
-                        ProductTypeId = 3,
-                        Title = "Acordian",
-                        Price = 2000,
-                        Description = "No clue why I have this, please take it off my hands!",
-                        CustomerId = 1
-                    }
-                };
+                // var products = new Product[]
+                // {
+                //     new Product {
+                //         ProductTypeId = producttypes.Single(s => s.Type == "Electronics").ProductTypeId,
+                //         Title = "Time Machine",
+                //         Price = 800,
+                //         Description = "Trust me, it works. Really, it does!",
+                //         CustomerId = customers.Single(s => s.FirstName == "Tim").CustomerId,
+                //     },
+                //     new Product {
+                //         ProductTypeId = producttypes.Single(s => s.Type == "Household Goods").ProductTypeId,
+                //         Title = "Couch",
+                //         Price = 125,
+                //         Description = "Good couch, small rip on left side.",
+                //         CustomerId = customers.Single(s => s.FirstName == "Mitch").CustomerId,
+                //     },
+                //     new Product {
+                //         ProductTypeId = producttypes.Single(s => s.Type == "Musical Instruments").ProductTypeId,
+                //         Title = "Acordian",
+                //         Price = 2000,
+                //         Description = "No clue why I have this, please take it off my hands!",
+                //         CustomerId = customers.Single(s => s.FirstName == "Kim").CustomerId,
+                //     }
+                // };
 
-                foreach (Product i in products)
-                {
-                    context.Product.Add(i);
-                }
-                context.SaveChanges();
+                // foreach (Product i in products)
+                // {
+                //     context.Product.Add(i);
+                // }
+                // context.SaveChanges();
 
                 var orders = new Order[]
                 {
                     new Order {
-                        CustomerId = 2
+                        CustomerId = customers.Single(s => s.FirstName == "Mitch").CustomerId
                     },
                     new Order {
-                        CustomerId = 3
+                        CustomerId = customers.Single(s => s.FirstName == "Kim").CustomerId
                     },
                     new Order {
-                        CustomerId = 1
+                        CustomerId = customers.Single(s => s.FirstName == "Tim").CustomerId
                     },
                 };
 
-                foreach (ProductType i in producttypes)
+                foreach (Order i in orders)
                 {
-                    context.ProductType.Add(i);
+                    context.Order.Add(i);
                 }
                 context.SaveChanges();
 
@@ -112,15 +112,15 @@ namespace BangazonAPI.Data
                 {
                     new PaymentType {
                         Type = "Visa",
-                        CustomerId = 3
+                        CustomerId = customers.Single(s => s.FirstName == "Tim").CustomerId
                     },
                     new PaymentType {
                         Type = "MasterCard",
-                        CustomerId = 1
+                        CustomerId = customers.Single(s => s.FirstName == "Kim").CustomerId
                     },
                     new PaymentType {
                         Type = "American Express",
-                        CustomerId = 2
+                        CustomerId = customers.Single(s => s.FirstName == "Mitch").CustomerId
                     },
                 };
 
@@ -176,17 +176,17 @@ namespace BangazonAPI.Data
                     new Employee {
                         FirstName = "Green",
                         LastName = "Thumb",
-                        DepartmentId = 3
+                        DepartmentId = departments.Single(s => s.Name == "Customer Service").DepartmentId
                     },
                     new Employee {
                         FirstName = "Blue",
                         LastName = "Duck",
-                        DepartmentId = 2
+                        DepartmentId = departments.Single(s => s.Name == "Human Relations").DepartmentId
                     },
                     new Employee {
                         FirstName = "Red",
                         LastName = "Herring",
-                        DepartmentId = 2,
+                        DepartmentId = departments.Single(s => s.Name == "Moderators").DepartmentId,
                         Supervisor = true
                     },
                 };
@@ -212,7 +212,7 @@ namespace BangazonAPI.Data
                     new TrainingProgram {
                         StartDate = DateTime.Parse("2018-01-02"),
                         EndDate = DateTime.Parse("2018-02-01"),
-                        MaxAttendees = 25
+                        MaxAttendees = 30
                     },
                 };
 
