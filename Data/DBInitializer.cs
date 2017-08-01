@@ -4,6 +4,13 @@ using BangazonAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
+/*  * CLASS: DbInitializer
+    * PURPOSE: Checks the DB upon execution of program, and seeds if no customer exists.
+    * AUTHOR: Team One to What
+    * METHODS:
+        Initialize(): Checks to see if DB exists, if not seeds tables with Data.
+*/
+
 namespace BangazonAPI.Data
 {
     public static class DbInitializer
