@@ -33,7 +33,7 @@ https://docs.asp.net/en/latest/getting-started.html
 
 ### Text Editor
 
-For a developer environment you will also need an up to date version on Microsoft's Visual Studio or [Visual Studio Code](https://code.visualstudio.com/download) , which will work on Mac OS
+For a developer environment, you will also need an up-to-date version of Microsoft's Visual Studio or [Visual Studio Code](https://code.visualstudio.com/download) for Mac OS.
 
 ### SQLite  
 
@@ -53,9 +53,9 @@ Visit the [SQLite downloads](https://www.sqlite.org/download.html) and download 
 
 ###  Postman
 
-We also recomend [Postman](https://www.getpostman.com/) for working with our API.
+We also recommend [Postman](https://www.getpostman.com/) for working with our API.
 
-#### Installing
+### Installing
 
 After you have the appropriate tools installed you will can clone the repo to your local system and follow the below steps:
 
@@ -68,16 +68,16 @@ dotnet run
 
 ### Once API is running
 
-The database will have the below tables available to add.  Tables with dependant tables listed will need to have instances of their dependant tables created before you can create an instance of them.
+The database will have the below tables available to add.  Tables with dependent tables listed will need to have instances of their dependent tables created before you can create an instance of them.
 
 For a visual representation of our database structure and relationships, please open the Bangazon.xml file in the root directory of this project.
 
 * Customer
 * Product Type
-* Product       -Dependant on there being a product Type
-* Order         -Dependant on there being a customer and payment type
-* Payment Type  -Dependent on there being a customer
+* Product       -Must have a product Type
+* Order         -Must have a customer and a payment type
+* Payment Type  -Must have a customer
 * Computer 
 * Department 
-* Employee      -Dependent upon there being a department 
+* Employee      -Must have a department 
 * Training Program 
